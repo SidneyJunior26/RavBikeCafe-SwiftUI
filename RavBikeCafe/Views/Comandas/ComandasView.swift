@@ -17,8 +17,6 @@ struct ComandasView: View {
     
     @State private var showingAddView = false
     
-    @AppStorage("isDarkMode") private var isDarkMode = true
-    
     var body: some View {        
         NavigationView {
             VStack(alignment: .leading) {
@@ -27,7 +25,7 @@ struct ComandasView: View {
                     .padding(.horizontal)
                 List {
                     ForEach(comandas) { comanda in
-                        NavigationLink(destination: Text("\(comanda.numero)")) {
+                        NavigationLink(destination: Text("\(comanda.id)")) {
                             HStack {
                                 VStack(alignment: .leading, spacing: 6) {
                                     Text("\(comanda.numero) - \(comanda.nomeCliente!)")
@@ -54,15 +52,13 @@ struct ComandasView: View {
                         Text("Nova Comanda")
                     }
                 }
-                ToolbarItem(placement: .navigationBarLeading) {
-                    EditButton()
-                }
             }
             .sheet(isPresented: $showingAddView) {
                 AddComandaView()
             }
         }
         .navigationViewStyle(.stack)
+        .colorScheme(ContentView().isDarkMode ? .dark : .light)
     }
     
     private func deleteComanda(offsets: IndexSet) {

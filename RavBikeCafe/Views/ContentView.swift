@@ -11,7 +11,7 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) var managedObjContext
     @Environment(\.dismiss) var dimiss
     
-    @AppStorage("isDarkMode") private var isDarkMode = true
+    @AppStorage("isDarkMode") public var isDarkMode = true
     
     let menuItems = [
         MenuItem(name: "Comandas", icon: "list.bullet"),

@@ -22,6 +22,7 @@ struct AddComandaView: View {
     @State private var nomeCliente = ""
     @State private var pago = false
     @State private var searchQuery = ""
+    @State private var quantidade = [UUID: Int]()
     
     var body: some View {
         Form {
@@ -33,7 +34,7 @@ struct AddComandaView: View {
                 }
                 
                 VStack(alignment: .leading) {
-                    Text("Adicionar Produto")
+                    Text("Produtos")
                         .font(.title2)
                         .bold()
                     
@@ -47,27 +48,35 @@ struct AddComandaView: View {
                             produto.descricao?.contains(searchQuery) == true ||
                             produto.id?.uuidString.contains(searchQuery) == true
                         }) { produto in
-                            NavigationLink(destination: Text("\(produto.id?.uuidString ?? "Desconhecido")")) {
+                            HStack {
+                                VStack(alignment: .leading, spacing: 6) {
+                                    Text(produto.descricao ?? "Sem descrição")
+                                        .bold()
+                                    Text("R$ \(produto.valor, specifier: "%.2f")")
+                                        .foregroundColor(.blue)
+                                }
+                                Spacer()
                                 HStack {
-                                    VStack(alignment: .leading, spacing: 6) {
-                                        Text(produto.descricao ?? "Sem descrição")
-                                            .bold()
-                                        Text("R$ \(produto.valor, specifier: "%.2f")")
-                                            .foregroundColor(.blue)
-                                    }
-                                    Spacer()
                                     Button(action: {
-                                        adicionarItemComanda(produto: produto)
+                                        diminuirQuantidade(produto: produto)
                                     }) {
-                                        Image(systemName: "plus.circle")
-                                            .foregroundColor(.green)
+                                        Image(systemName: "minus")
+                                            .foregroundColor(.red)
+                                    }
+                                    Text("\(quantidade[produto.id ?? UUID()] ?? 0)")
+                                        .padding(.horizontal, 8)
+                                    Button(action: {
+                                        aumentarQuantidade(produto: produto)
+                                    }) {
+                                        Image(systemName: "plus")
+                                            .foregroundColor(.blue)
                                     }
                                 }
                             }
                         }
                     }
                     .listStyle(.plain)
-                    .frame(minHeight: 100)
+                    .frame(minHeight: 50)
                 }
                 .padding()
                 
@@ -104,10 +113,23 @@ struct AddComandaView: View {
                 }
             }
         }
+        .colorScheme(ContentView().isDarkMode ? .dark : .light)
     }
     
     private func deleteItem(offsets: IndexSet) {
         //
+    }
+    
+    private func diminuirQuantidade(produto: Produto) {
+        guard let id = produto.id else { return }
+        if let currentQuantity = quantidade[id], currentQuantity > 0 {
+            quantidade[id] = currentQuantity - 1
+        }
+    }
+    
+    private func aumentarQuantidade(produto: Produto) {
+        guard let id = produto.id else { return }
+        quantidade[id, default: 0] += 1
     }
     
     private func adicionarItemComanda(produto: Produto) {

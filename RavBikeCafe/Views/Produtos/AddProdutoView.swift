@@ -29,12 +29,11 @@ struct AddProdutoView: View {
                         DataController().addProduto(descricao: descricao, valor: valor, context: managedObjContext)
                         dismiss()
                     }
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.large)
                     Spacer()
                 }
             }
         }
+        .colorScheme(ContentView().isDarkMode ? .dark : .light)
     }
 }
 

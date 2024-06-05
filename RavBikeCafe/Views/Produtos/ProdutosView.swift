@@ -9,8 +9,6 @@ struct ProdutosView: View {
     
     @State private var showingAddView = false
     
-    @AppStorage("isDarkMode") private var isDarkMode = true
-    
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
@@ -51,6 +49,7 @@ struct ProdutosView: View {
                     .environment(\.managedObjectContext, managedObjContext)
             }
         }
+        .colorScheme(ContentView().isDarkMode ? .dark : .light)
     }
     
     private func deleteProduto(offsets: IndexSet) {
