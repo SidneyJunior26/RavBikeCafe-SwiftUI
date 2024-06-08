@@ -20,6 +20,7 @@
 		B7D394452C08C9370040A8DD /* RavBikeCafeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D394442C08C9370040A8DD /* RavBikeCafeUITests.swift */; };
 		B7D394472C08C9370040A8DD /* RavBikeCafeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D394462C08C9370040A8DD /* RavBikeCafeUITestsLaunchTests.swift */; };
 		B7F0A1CF2C0BA7260091CED6 /* AddComandaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F0A1CE2C0BA7260091CED6 /* AddComandaView.swift */; };
+		B7FA85CF2C14CC93007B207C /* CategoriasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FA85CE2C14CC93007B207C /* CategoriasView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		B7D394442C08C9370040A8DD /* RavBikeCafeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RavBikeCafeUITests.swift; sourceTree = "<group>"; };
 		B7D394462C08C9370040A8DD /* RavBikeCafeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RavBikeCafeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B7F0A1CE2C0BA7260091CED6 /* AddComandaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddComandaView.swift; sourceTree = "<group>"; };
+		B7FA85CE2C14CC93007B207C /* CategoriasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriasView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 		B7A1E2E12C0A698C0049F53E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B7FA85CD2C14B7A8007B207C /* Categorias */,
 				B762B5AE2C0D082B00DB06C7 /* Comandas */,
 				B762B5AD2C0D081900DB06C7 /* Produtos */,
 				B7D3942B2C08C9350040A8DD /* ContentView.swift */,
@@ -175,6 +178,14 @@
 				B7D394462C08C9370040A8DD /* RavBikeCafeUITestsLaunchTests.swift */,
 			);
 			path = RavBikeCafeUITests;
+			sourceTree = "<group>";
+		};
+		B7FA85CD2C14B7A8007B207C /* Categorias */ = {
+			isa = PBXGroup;
+			children = (
+				B7FA85CE2C14CC93007B207C /* CategoriasView.swift */,
+			);
+			path = Categorias;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,6 +320,7 @@
 			files = (
 				B762B5AC2C0D081100DB06C7 /* AddProdutoView.swift in Sources */,
 				B7658F852C0AA01A003789EC /* DataController.swift in Sources */,
+				B7FA85CF2C14CC93007B207C /* CategoriasView.swift in Sources */,
 				B7A1E2E02C0A19570049F53E /* ComandasView.swift in Sources */,
 				B7658F832C0A6AFB003789EC /* RavBikeCafeModel.xcdatamodeld in Sources */,
 				B762B5AA2C0CFDA400DB06C7 /* ProdutosView.swift in Sources */,

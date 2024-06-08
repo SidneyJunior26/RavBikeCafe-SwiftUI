@@ -18,7 +18,7 @@ struct ProdutosView: View {
                 
                 List {
                     ForEach(produtos) { produto in
-                        NavigationLink(destination: Text("\(produto.id?.uuidString ?? "Desconhecido")")) {
+                        NavigationLink(destination: Text("\(produto.id?.uuidString)")) {
                             HStack {
                                 VStack(alignment: .leading, spacing: 6) {
                                     Text(produto.descricao ?? "Sem descrição")
@@ -53,14 +53,7 @@ struct ProdutosView: View {
     }
     
     private func deleteProduto(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { produtos[$0] }.forEach(managedObjContext.delete)
-            do {
-                try managedObjContext.save()
-            } catch {
-                print("Erro ao deletar produto: \(error.localizedDescription)")
-            }
-        }
+        //
     }
     
     private func totalProdutos() -> Int {

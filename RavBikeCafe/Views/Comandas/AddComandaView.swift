@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct AddComandaView: View {
     @Environment(\.managedObjectContext) var managedObjContext
