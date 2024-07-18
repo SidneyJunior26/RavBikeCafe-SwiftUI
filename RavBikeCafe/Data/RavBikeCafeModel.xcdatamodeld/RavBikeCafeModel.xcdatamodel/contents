@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
     <entity name="CategoriaProduto" representedClassName="CategoriaProduto" syncable="YES" codeGenerationType="class">
-        <attribute name="descricao" optional="YES" attributeType="String"/>
+        <attribute name="descricao" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
     </entity>
     <entity name="Comandas" representedClassName="Comandas" syncable="YES" codeGenerationType="class">

@@ -11,7 +11,7 @@ import CoreData
 struct CategoriasView: View {
     @Environment(\.managedObjectContext) var managedObjContext
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Produto.id, ascending: false)]
+        sortDescriptors: [NSSortDescriptor(keyPath: \CategoriaProduto.id, ascending: false)]
     ) var categorias: FetchedResults<CategoriaProduto>
     
     @State private var showingAddView = false
@@ -20,12 +20,11 @@ struct CategoriasView: View {
         NavigationView {
             VStack(alignment: .leading) {
                 List {
-                    ForEach(categorias) {
-                        categoria in
+                    ForEach(categorias) { categoria in
                         NavigationLink(destination: Text("\(categoria.id?.uuidString)")) {
                             HStack {
                                 VStack(alignment: .leading, spacing: 6) {
-                                    Text(categoria.description)
+                                    Text(categoria.descricao!)
                                         .bold()
                                 }
                             }
@@ -44,6 +43,10 @@ struct CategoriasView: View {
                         Text("Add Categoria")
                     }
                 }
+            }
+            .sheet(isPresented: $showingAddView) {
+                AddCategoriaView()
+                    .environment(\.managedObjectContext, managedObjContext)
             }
         }
         .navigationViewStyle(.stack)

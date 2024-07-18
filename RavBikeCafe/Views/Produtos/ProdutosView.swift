@@ -8,6 +8,7 @@ struct ProdutosView: View {
     ) var produtos: FetchedResults<Produto>
     
     @State private var showingAddView = false
+    @State private var showingCategoriasView = false
     
     var body: some View {
         NavigationView {
@@ -43,9 +44,20 @@ struct ProdutosView: View {
                         Text("Add Produto")
                     }
                 }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        showingCategoriasView.toggle()
+                    } label: {
+                        Text("Categorias")
+                    }
+                }
             }
             .sheet(isPresented: $showingAddView) {
                 AddProdutoView()
+                    .environment(\.managedObjectContext, managedObjContext)
+            }
+            .sheet(isPresented: $showingCategoriasView) {
+                CategoriasView()
                     .environment(\.managedObjectContext, managedObjContext)
             }
         }

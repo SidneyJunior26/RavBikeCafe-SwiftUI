@@ -26,64 +26,57 @@ struct AddProdutoView: View {
     @State private var categoriaSelecionada: CategoriaProduto?
     
     var body: some View {
-        Form {
-            Section {
-                TextField("Descrição Produto", text: $descricao)
-                
-                TextField("Valor", value: $valor, format: .currency(code: "BRL"))
-                    .keyboardType(.numberPad)
-                    .padding()
-                                
-                VStack(alignment: .leading) {
-                    HStack {
-                        Spacer()
-                        Text("Selecione uma Categoria")
-                            .font(.title2)
-                            .bold()
-                        Spacer()
-                    }
-                    
-                    TextField("Pesquisar", text: $searchQuery)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding()
-                    
-                    List(selection: $categoriaSelecionada) {
-                        ForEach(categoriasProduto.filter { categoria in
-                            searchQuery.isEmpty ||
-                            categoria.descricao?.contains(searchQuery) == true
-                        }) { categoria in
+        NavigationView {
+            VStack(alignment: .leading)  {
+                Form {
+                    Section {
+                        TextField("Descrição Produto", text: $descricao)
+                        
+                        TextField("Valor", value: $valor, format: .currency(code: "BRL"))
+                            .keyboardType(.numberPad)
+                            .padding()
+                        
+                        VStack(alignment: .leading) {
                             HStack {
-                                VStack(alignment: .leading, spacing: 6) {
-                                    Text(categoria.descricao ?? "Sem descrição")
-                                        .bold()
-                                }
-//                                Spacer()
-//                                Toggle(isOn: $selected) {
-//                                    
-//                                }
-//                                .onChange(of: selected) {
-//                                    if selected {
-//                                        idCategoria = categoria.id!
-//                                    }
-//                                    else {
-//                                        idCategoria = nil
-//                                    }
-//                                }
-//                                .disabled(selected)
+                                Spacer()
+                                Text("Selecione uma Categoria")
+                                    .font(.title2)
+                                    .bold()
+                                Spacer()
                             }
+                            
+                            TextField("Pesquisar", text: $searchQuery)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .padding()
+                            
+                            List(selection: $categoriaSelecionada) {
+                                ForEach(categoriasProduto.filter { categoria in
+                                    searchQuery.isEmpty ||
+                                    categoria.descricao?.contains(searchQuery) == true
+                                }) { categoria in
+                                    HStack {
+                                        VStack(alignment: .leading, spacing: 6) {
+                                            Text(categoria.descricao ?? "Sem descrição")
+                                                .bold()
+                                        }
+                                    }
+                                }
+                            }
+                            .listStyle(.plain)
+                            .frame(minHeight: 100)
                         }
                     }
-                    .listStyle(.plain)
-                    .frame(minHeight: 200)
                 }
-                
-                HStack {
-                    Spacer()
-                    Button("Salvar") {
+            }
+            .navigationTitle("Novo Produto")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
                         DataController().addProduto(descricao: descricao, valor: valor, context: managedObjContext)
                         dismiss()
+                    } label: {
+                        Text("Salvar")
                     }
-                    Spacer()
                 }
             }
         }
